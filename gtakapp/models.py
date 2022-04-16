@@ -24,10 +24,21 @@ class Customer(models.Model):
     avatar = models.ImageField(upload_to='customer_profile/', blank=True)
     phone = models.CharField(max_length=500, blank=True)
     address = models.CharField(max_length=500, blank=True)
-
+    
     def __str__(self):
         return self.user.get_full_name()
 
+
+# this model Stores the data of the Phones Verified
+class phoneModel(models.Model):
+    Mobile = models.IntegerField(blank=False)
+    isVerified = models.BooleanField(blank=False, default=False)
+    counter = models.IntegerField(default=0, blank=False)   # For HOTP Verification
+
+    def __str__(self):
+        return str(self.Mobile)
+
+        
 
 class Driver(models.Model):
     user = models.OneToOneField(User,

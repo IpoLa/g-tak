@@ -82,14 +82,14 @@ class CategorySerializer(serializers.ModelSerializer):
 
 
 class CategoryDetailSerializer(serializers.ModelSerializer):
-    url = serializers.HyperlinkedIdentityField(view_name='categorys_detail_api')
+    url = serializers.HyperlinkedIdentityField(view_name='categories_detail_api')
     class Meta:
         model = Category
         fields = '__all__'
 
 
 class CategoryDetailUpdateSerializer(serializers.ModelSerializer):
-    # url = serializers.HyperlinkedIdentityField(view_name='categories_detail_api')
+    url = serializers.HyperlinkedIdentityField(view_name='categories_detail_api')
     class Meta:
         model = Category
         fields = [

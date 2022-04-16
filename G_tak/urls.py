@@ -1,5 +1,5 @@
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from rest_framework_jwt.views import obtain_jwt_token
 from gtakapp.apis import APIHomeView, \
         MealListAPIView, \
@@ -16,7 +16,9 @@ from gtakapp.apis import APIHomeView, \
         DriverCreateAPIView, \
         RestaurantRetrieveAPIView, \
         RestaurantListAPIView, \
-        RestaurantCreateAPIView
+        RestaurantCreateAPIView, \
+        getPhoneNumberRegistered, \
+        getPhoneNumberRegistered_TimeBased
 
 
 from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token
@@ -31,6 +33,8 @@ urlpatterns = [
 
     path('api/', APIHomeView.as_view(), name='home_api'),
 
+    path("verify/<phone>/", getPhoneNumberRegistered.as_view(), name="OTP Gen"),
+    path("verify/time_based/<phone>/", getPhoneNumberRegistered_TimeBased.as_view(), name="OTP Gen Time Based"),
 
     path('api/auth/token/', obtain_jwt_token, name='auth_login_api'),
     path('api/auth/token/refresh/', refresh_jwt_token, name='refresh_token_api'),
