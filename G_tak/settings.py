@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-8^k%78^7plpnxk8y!-eucwho_y6w0$w1giy-l@nz5os=k9&&k%
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['g-tak-app.herokuapp.com']
 
 
 # Application definition
@@ -147,6 +147,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+MEDIA_URL = 'media'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
