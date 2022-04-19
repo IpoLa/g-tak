@@ -55,6 +55,7 @@ class Driver(models.Model):
 
 class Category(models.Model):
     name = models.CharField(max_length=90, unique=True)
+    category_image = models.ImageField(upload_to='category_images/', blank=False)
     is_active = models.BooleanField(default=True)
 
     def __str__(self):

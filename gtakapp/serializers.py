@@ -96,6 +96,7 @@ class CategoryDetailUpdateSerializer(serializers.ModelSerializer):
             # "url",
             "id",
             "name",
+            "category_image",
         ]
     def create(self, validated_data):
         name = validated_data["name"]
