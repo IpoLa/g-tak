@@ -58,4 +58,4 @@ urlpatterns = [
     path('api/drivers/', DriverListAPIView.as_view(), name='drivers_api'),
     path('api/drivers/<int:pk>/', DriverRetrieveAPIView.as_view(), name='drivers_detail_api'),
     path('api/create-driver/', DriverCreateAPIView.as_view(), name='drivers_create_api'),
-]
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
