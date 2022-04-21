@@ -42,7 +42,8 @@ from gtakapp.serializers import MealSerializer, \
     DriverSerializer, \
     DriverDetailSerializer, \
     DriverDetailUpdateSerializer, \
-    OrderSerializer
+    OrderSerializer, \
+    OrderCustomerSerializer
 
 from rest_framework.authtoken.models import Token
 
@@ -103,6 +104,10 @@ class APIHomeView(APIView):
 				"url": api_reverse("drivers_api", request=request),
                 "create": api_reverse("drivers_create_api", request=request),
 			},
+            "orders_customer": {
+                "count": Order.objects.all().count(),
+                "create": api_reverse("customers_order_create_api", request=request),
+            }
 		}
 		return Response(data)
 
@@ -249,7 +254,7 @@ class CustomerListAPIView(generics.ListAPIView):
 
 
 class CustomerCreateAPIView(generics.CreateAPIView):
-	queryset = Customer.objects.all()
+	queryset = Order.objects.all()
 	serializer_class = CustomerDetailUpdateSerializer
 
 
@@ -291,6 +296,9 @@ class RestaurantCreateAPIView(generics.CreateAPIView):
 	serializer_class = RestaurantDetailUpdateSerializer
 
 
+class CustomerCreateOrderAPIView(generics.CreateAPIView):
+    queryset = Order.objects.all()
+    serializer_class = OrderCustomerSerializer
 
 
 
@@ -310,14 +318,14 @@ def customer_add_order(request):
 
     if request.method == "POST":
         # Get token
-        access_token = AccessToken.objects.get(
-            token=request.POST.get("access_token"), expires__gt=timezone.now())
+        # access_token = AccessToken.objects.get(
+        #     token=request.POST.get("access_token"), expires__gt=timezone.now())
 
-        # Get profile
-        customer = access_token.user.customer
+        # # Get profile
+        # customer = access_token.user.customer
 
-        # Get Stripe token
-        stripe_token = request.POST["stripe_token"]
+        # # Get Stripe token
+        # stripe_token = request.POST["stripe_token"]
 
         # Check whether customer has any order that is not delivered
         if Order.objects.filter(customer=customer).exclude(

@@ -218,7 +218,7 @@ class OrderCustomerSerializer(serializers.ModelSerializer):
     name = serializers.ReadOnlyField(source="user.get_full_name")
 
     class Meta:
-        model = Customer
+        model = Order
         fields = '__all__'
 
 
@@ -226,7 +226,7 @@ class OrderDriverSerializer(serializers.ModelSerializer):
     name = serializers.ReadOnlyField(source="user.get_full_name")
 
     class Meta:
-        model = Customer
+        model = Driver
         fields = '__all__'
 
 

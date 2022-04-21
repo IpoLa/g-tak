@@ -22,7 +22,8 @@ from gtakapp.apis import APIHomeView, \
         RestaurantListAPIView, \
         RestaurantCreateAPIView, \
         getPhoneNumberRegistered, \
-        getPhoneNumberRegistered_TimeBased
+        getPhoneNumberRegistered_TimeBased, \
+        CustomerCreateOrderAPIView
 
 from gtakapp import apis
 from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token
@@ -62,6 +63,8 @@ urlpatterns = [
     path('api/drivers/', DriverListAPIView.as_view(), name='drivers_api'),
     path('api/drivers/<int:pk>/', DriverRetrieveAPIView.as_view(), name='drivers_detail_api'),
     path('api/create-driver/', DriverCreateAPIView.as_view(), name='drivers_create_api'),
+
+    path('api/customer/order/create/', CustomerCreateOrderAPIView.as_view(), name='customers_order_create_api'),
 
     path('api/customer/order/add/', apis.customer_add_order),
     path('api/customer/order/latest/', apis.customer_get_latest_order),
