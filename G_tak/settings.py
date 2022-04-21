@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-8^k%78^7plpnxk8y!-eucwho_y6w0$w1giy-l@nz5os=k9&&k%
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['g-tak-app.herokuapp.com']
+ALLOWED_HOSTS = ['g-tak-app.herokuapp.com', '*']
 
 
 # Application definition
@@ -45,6 +45,9 @@ INSTALLED_APPS = [
     'django_filters',
     # 'registration',
     'rest_framework',
+    'rest_framework_social_oauth2',
+    'rest_framework.authtoken',
+    'oauth2_provider',
     'gtakapp',
 ]
 

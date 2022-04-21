@@ -4,6 +4,7 @@ from django.conf.urls.static import static
 from django.conf import settings
 
 from rest_framework_jwt.views import obtain_jwt_token
+
 from gtakapp.apis import APIHomeView, \
         MealListAPIView, \
         MealRetrieveAPIView, \
@@ -23,9 +24,9 @@ from gtakapp.apis import APIHomeView, \
         getPhoneNumberRegistered, \
         getPhoneNumberRegistered_TimeBased
 
-
+from gtakapp import apis
 from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token
-    
+from rest_framework.authtoken import views
 
 
 
@@ -61,4 +62,18 @@ urlpatterns = [
     path('api/drivers/', DriverListAPIView.as_view(), name='drivers_api'),
     path('api/drivers/<int:pk>/', DriverRetrieveAPIView.as_view(), name='drivers_detail_api'),
     path('api/create-driver/', DriverCreateAPIView.as_view(), name='drivers_create_api'),
+
+    path('api/customer/order/add/', apis.customer_add_order),
+    path('api/customer/order/latest/', apis.customer_get_latest_order),
+    path('api/customer/driver/location/', apis.customer_driver_location),
+    path('api/customer/order/history/', apis.customer_get_order_history),
+
+    # APIs for DRIVERS
+    path('api/driver/orders/ready/', apis.driver_get_ready_orders),
+    path('api/driver/order/pick/', apis.driver_pick_order),
+    path('api/driver/order/latest/', apis.driver_get_latest_order),
+    path('api/driver/order/complete/', apis.driver_complete_order),
+    path('api/driver/revenue/', apis.driver_get_revenue),
+    path('api/driver/location/update/', apis.driver_update_location),
+    path('api/driver/order/history/', apis.driver_get_order_history),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
